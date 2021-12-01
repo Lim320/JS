@@ -1,7 +1,7 @@
 {
   "frames": [
     {
-      "filename": "guard_2",
+      "filename": "npc1_1",
       "frame": {
         "x": 0,
         "y": 0,
@@ -26,19 +26,19 @@
       }
     },
     {
-      "filename": "guard_1",
+      "filename": "npc1_2",
       "frame": {
         "x": 0,
         "y": 32,
-        "w": 20,
+        "w": 22,
         "h": 32
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 6,
+        "x": 5,
         "y": 0,
-        "w": 20,
+        "w": 22,
         "h": 32
       },
       "sourceSize": {
@@ -54,7 +54,7 @@
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",
-    "image": "guard.png",
+    "image": "npc1.png",
     "format": "RGBA8888",
     "size": {
       "w": 22,

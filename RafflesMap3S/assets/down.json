@@ -1,10 +1,35 @@
 {
   "frames": [
     {
-      "filename": "down(1)",
+      "filename": "down(2)",
       "frame": {
         "x": 0,
         "y": 0,
+        "w": 20,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 0,
+        "w": 20,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 33
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "down(1)",
+      "frame": {
+        "x": 0,
+        "y": 33,
         "w": 20,
         "h": 32
       },
@@ -26,10 +51,10 @@
       }
     },
     {
-      "filename": "down(2)",
+      "filename": "down(4)",
       "frame": {
         "x": 0,
-        "y": 32,
+        "y": 65,
         "w": 20,
         "h": 32
       },
@@ -42,7 +67,7 @@
         "h": 32
       },
       "sourceSize": {
-        "w": 33,
+        "w": 32,
         "h": 32
       },
       "pivot": {
@@ -54,32 +79,7 @@
       "filename": "down(3)",
       "frame": {
         "x": 0,
-        "y": 64,
-        "w": 20,
-        "h": 32
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 7,
-        "y": 0,
-        "w": 20,
-        "h": 32
-      },
-      "sourceSize": {
-        "w": 33,
-        "h": 32
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    {
-      "filename": "down(4)",
-      "frame": {
-        "x": 0,
-        "y": 96,
+        "y": 33,
         "w": 20,
         "h": 32
       },
@@ -108,7 +108,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 20,
-      "h": 128
+      "h": 97
     },
     "scale": 1
   }

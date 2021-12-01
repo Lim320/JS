@@ -1,7 +1,7 @@
 {
   "frames": [
     {
-      "filename": "guard_2",
+      "filename": "friends_1",
       "frame": {
         "x": 0,
         "y": 0,
@@ -12,13 +12,13 @@
       "trimmed": true,
       "spriteSourceSize": {
         "x": 5,
-        "y": 0,
+        "y": 1,
         "w": 22,
         "h": 32
       },
       "sourceSize": {
-        "w": 32,
-        "h": 32
+        "w": 33,
+        "h": 33
       },
       "pivot": {
         "x": 0.5,
@@ -26,24 +26,24 @@
       }
     },
     {
-      "filename": "guard_1",
+      "filename": "friends_2",
       "frame": {
         "x": 0,
         "y": 32,
-        "w": 20,
+        "w": 22,
         "h": 32
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 6,
-        "y": 0,
-        "w": 20,
+        "x": 5,
+        "y": 1,
+        "w": 22,
         "h": 32
       },
       "sourceSize": {
-        "w": 32,
-        "h": 32
+        "w": 33,
+        "h": 33
       },
       "pivot": {
         "x": 0.5,
@@ -54,7 +54,7 @@
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",
-    "image": "guard.png",
+    "image": "friends.png",
     "format": "RGBA8888",
     "size": {
       "w": 22,

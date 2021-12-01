@@ -1,7 +1,7 @@
 {
   "frames": [
     {
-      "filename": "guard_2",
+      "filename": "library_2",
       "frame": {
         "x": 0,
         "y": 0,
@@ -26,7 +26,7 @@
       }
     },
     {
-      "filename": "guard_1",
+      "filename": "library_1",
       "frame": {
         "x": 0,
         "y": 32,
@@ -54,7 +54,7 @@
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",
-    "image": "guard.png",
+    "image": "librarys.png",
     "format": "RGBA8888",
     "size": {
       "w": 22,

@@ -1,7 +1,7 @@
 {
   "frames": [
     {
-      "filename": "cafeteria2",
+      "filename": "cafeteria_2",
       "frame": {
         "x": 0,
         "y": 0,
@@ -17,8 +17,8 @@
         "h": 32
       },
       "sourceSize": {
-        "w": 33,
-        "h": 33
+        "w": 32,
+        "h": 32
       },
       "pivot": {
         "x": 0.5,
@@ -26,7 +26,7 @@
       }
     },
     {
-      "filename": "cafeteria1",
+      "filename": "cafeteria_1",
       "frame": {
         "x": 0,
         "y": 32,
@@ -42,8 +42,8 @@
         "h": 32
       },
       "sourceSize": {
-        "w": 33,
-        "h": 33
+        "w": 32,
+        "h": 32
       },
       "pivot": {
         "x": 0.5,
