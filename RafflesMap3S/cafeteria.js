@@ -58,9 +58,6 @@ class cafeteria extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.food = this.physics.add.sprite(359, 419, 'food');
-    this.lemonJuice = this.physics.add.sprite(183, 419, 'lemonJuice');
-
     //lecturer_npc_animation
     this.anims.create({
         key:'cafeteriaAnimation',
@@ -145,9 +142,18 @@ class cafeteria extends Phaser.Scene {
     this.physics.add.collider(this.player, this.tableLayer);
     this.physics.add.collider(this.player, this.itemLayer); 
 
-    //collect item
+    //collect item_gift
     this.gift = this.physics.add.sprite(-10, -10, 'gift');
-    
+
+    //collect item_remove_food and lemonJuice
+    this.food = this.physics.add.sprite(359, 419, 'food');
+    this.lemonJuice = this.physics.add.sprite(183, 419, 'lemonJuice');
+
+     //overlap_food and lemonJuice
+     this.physics.add.overlap(this.player, this.food, this.collectItem2, null, this );
+     this.physics.add.overlap(this.player, this.lemonJuice, this.collectItem3, null, this );
+
+
     }
 
     update() {
@@ -228,6 +234,16 @@ class cafeteria extends Phaser.Scene {
     playerPos.dir = "left";
     this.scene.start("blockD",{playerPos: playerPos});
   }
+
+  collectItem2 (player,food)
+  {
+  food.disableBody(true,true);
+   }
+
+   collectItem3 (player,lemonJuice)
+  {
+  lemonJuice.disableBody(true,true);
+   }
 
     
 

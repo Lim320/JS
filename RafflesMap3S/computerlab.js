@@ -48,11 +48,6 @@ class computerlab extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.bag = this.physics.add.sprite(607, 1109, 'bag');
-
-    //overlap
-    // this.physics.add.overlap(this.player, this.bag, this.collectbag, null, this );
-
     // this text will show the score
     // this.scoreText = this.add.text(650, 50, this.score, {
     //   fontSize: '30px',
@@ -100,10 +95,16 @@ class computerlab extends Phaser.Scene {
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.frameLayer); 
 
-    //collect item
+    //collect item laptop
     this.laptop = this.physics.add.sprite(684, 1109, 'laptop');
 
-    //collect action
+    //collect item bag_remove
+    this.bag = this.physics.add.sprite(607, 1109, 'bag');
+
+    //overlap_bag
+    this.physics.add.overlap(this.player, this.bag, this.collectItem, null, this );
+
+    //collect action_laptop
     this.physics.add.overlap(this.player, this.laptop, this.holditem3, null, this);
             
     }
@@ -165,6 +166,11 @@ class computerlab extends Phaser.Scene {
 
     window.holdlaptop = 3
 }
+
+collectItem (player,bag)
+  {
+  bag.disableBody(true,true);
+   }
 
     
 
