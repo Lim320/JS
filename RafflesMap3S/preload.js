@@ -15,6 +15,7 @@ class preload extends Phaser.Scene {
     this.load.image("bag","assets/bag.png");
     this.load.image("laptop","assets/laptop.png");
     this.load.image("book","assets/book.png");
+    this.load.image("gift","assets/gift.png");
 
      //main character movement
      this.load.atlas( 'left', 'assets/left.png', 'assets/left.json'); 

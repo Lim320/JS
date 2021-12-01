@@ -1,8 +1,7 @@
 class world extends Phaser.Scene {
   constructor() {
     super({
-      key: "world",
-    });
+      key: "world" });
   }
 
   // incoming data from scene below
@@ -55,59 +54,6 @@ class world extends Phaser.Scene {
     this.groundLayer = map.createLayer("groundLayer", tilesArray, 0, 0); 
     this.decorLayer = map.createLayer("decorLayer", tilesArray, 0, 0);
     this.buildingLayer = map.createLayer("BuildingLayer", tilesArray, 0, 0);
-      
-    // //main character animation_movement
-    // this.anims.create({ 
-    //   key: 'left',
-    //   frames: [
-    //     { key: 'left', frame: 'left(1)'}, 
-    //     { key: 'left', frame: 'left(2)'},
-    //     { key: 'left', frame: 'left(4)'},
-    //     { key: 'left', frame: 'left(3)'},
-
-    //   ],
-    //   frameRate: 6, 
-    //   repeat: -1
-    // })
-
-    // this.anims.create({
-    //   key: 'right',
-    //   frames: [
-    //     { key: 'right', frame: 'right(1)'},
-    //     { key: 'right', frame: 'right(2)'},
-    //     { key: 'right', frame: 'right(4)'},
-    //     { key: 'right', frame: 'right(3)'},
-
-    //   ],
-    //   frameRate: 6,
-    //   repeat: -1
-    // })
-
-
-
-    // this.anims.create({
-    //   key: 'up',
-    //   frames: [
-    //     { key: 'up', frame: 'up(1)'},
-    //     { key: 'up', frame: 'up(2)'},
-    //     { key: 'up', frame: 'up(4)'},
-    //     { key: 'up', frame: 'up(3)'},
-    //   ],
-    //   frameRate: 6,
-    //   repeat: -1
-    // })
-
-    //  this.anims.create({
-    //   key: 'down',
-    //   frames: [
-    //     { key: 'down', frame: 'down(2)'},
-    //     { key: 'down', frame: 'down(1)'},
-    //     { key: 'down', frame: 'down(4)'},
-    //     { key: 'down', frame: 'down(3)'},
-    //   ],
-    //   frameRate: 6,
-    //   repeat: -1
-    // })
 
     //guard_npc_animation
     this.anims.create({
@@ -122,11 +68,6 @@ class world extends Phaser.Scene {
 
     this.physics.world.bounds.width = this.groundLayer.width; 
     this.physics.world.bounds.height = this.groundLayer.height;
-
-    // Object layers
-    //main_character
-    // var start = map.findObject("objectLayer",(obj) => obj.name === "start");
-    // this.player = this.physics.add.sprite(start.x, start.y, 'down');
 
     //mainCharacter
     this.player = this.physics.add.sprite(
@@ -157,10 +98,29 @@ class world extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.decorLayer); 
     this.physics.add.collider(this.player, this.buildingLayer);
+
+     //collect item
+     this.gift = this.physics.add.sprite(-10, -10, 'gift');
+     this.laptop = this.physics.add.sprite(-10, -10, 'laptop');
   } 
   /////////////////// end of create //////////////////////////////
 
   update() {
+
+
+     //hold gift
+     if (window.holdgift == 2) {
+
+      this.gift.x = this.player.x+32
+      this.gift.y = this.player.y
+    }
+
+     //hold laptop
+     if (window.holdlaptop == 3) {
+
+      this.laptop.x = this.player.x+32
+      this.laptop.y = this.player.y
+  }
 
     // check for BlockA door1
     if ( this.player.x > 338 && this.player.x < 371

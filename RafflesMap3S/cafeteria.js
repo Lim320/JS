@@ -144,13 +144,31 @@ class cafeteria extends Phaser.Scene {
     this.physics.add.collider(this.player, this.wallLayer);
     this.physics.add.collider(this.player, this.tableLayer);
     this.physics.add.collider(this.player, this.itemLayer); 
+
+    //collect item
+    this.gift = this.physics.add.sprite(-10, -10, 'gift');
     
-
-
-        
     }
 
     update() {
+
+       //hold and drop gift
+     if (window.holdgift == 2) {
+
+      this.gift.x = this.player.x+32
+      this.gift.y = this.player.y
+    }
+
+      if (
+        this.player.x > 630&&
+        this.player.x < 650&&
+        this.player.y > 580&&
+        this.player.y < 600
+      ) {
+
+        console.log("dropgift")
+        window.holdgift = 0
+      }
 
     //go back to blockD classroom
     if ( this.player.x < 50

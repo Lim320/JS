@@ -2,7 +2,7 @@ class room1 extends Phaser.Scene {
 
     constructor() {
         super({ key: 'room1' });
-        // window.holdbook = 0
+        window.holdbook = 0
         
         // Put global variable here
     }
@@ -23,8 +23,8 @@ class room1 extends Phaser.Scene {
     //npc sas movement
     this.load.atlas('sas','assets/sas.png','assets/sas.json');
 
-    //collect items
-    this.load.image("book","assets/book.png");
+    // //collect items
+    // this.load.image("book","assets/book.png");
     }
 
     create() {
@@ -47,11 +47,7 @@ class room1 extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    //collect item
-    this.book = this.physics.add.sprite(423, 381, 'book');
-
-    //collect action
-    // this.physics.add.overlap(this.player, this.book, this.holditem, null, this);
+  
 
     //lecturer_sas_animation
     this.anims.create({
@@ -96,16 +92,32 @@ class room1 extends Phaser.Scene {
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.itemLayer); 
     // this.physics.add.collider( this.sas, this.player) 
+
+      //collect item
+      this.book = this.physics.add.sprite(423, 381, 'book');
+
+      //collect item
+     this.laptop = this.physics.add.sprite(-10, -10, 'laptop');
+
+      //collect action
+      this.physics.add.overlap(this.player, this.book, this.holditem, null, this);
     }
 
     update() {
 
         //hold book
-        // if (window.holdbook == 1){
+        if (window.holdbook == 1) {
 
-        //     this.book.x = this.player.x+32
-        //     this.book.y = this.player.y
-        // }
+            this.book.x = this.player.x+32
+            this.book.y = this.player.y
+        }
+
+         //hold laptop
+     if (window.holdlaptop == 3) {
+
+        this.laptop.x = this.player.x+32
+        this.laptop.y = this.player.y
+    }
 
     //go back to worldmap, check for blockA exit
     if ( this.player.x > 592 && this.player.x < 687
@@ -180,11 +192,11 @@ class room1 extends Phaser.Scene {
         }
 
         //function to hold book
-        // holditem(player) {
-        //     console.log("hold item")
+        holditem(player) {
+            console.log("hold item")
 
-        //     window.holdbook = 1
-        // }
+            window.holdbook = 1
+        }
 
     
 

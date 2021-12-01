@@ -107,10 +107,10 @@ class library extends Phaser.Scene {
       }
 
       if (
-        this.player.x > 843&&
-        this.player.x < 863&&
-        this.player.y > 443&&
-        this.player.y < 466
+        this.player.x > 800&&
+        this.player.x < 825&&
+        this.player.y > 460&&
+        this.player.y < 480
       ) {
 
         console.log("dropbook")

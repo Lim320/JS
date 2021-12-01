@@ -2,6 +2,7 @@ class computerlab extends Phaser.Scene {
 
     constructor() {
         super({ key: 'computerlab' });
+        window.holdlaptop = 0
         
         // Put global variable here
     }
@@ -48,7 +49,6 @@ class computerlab extends Phaser.Scene {
     this.physics.world.bounds.height = this.bgLayer.height;
 
     this.bag = this.physics.add.sprite(607, 1109, 'bag');
-    this.laptop = this.physics.add.sprite(684, 1109, 'laptop');
 
     //overlap
     // this.physics.add.overlap(this.player, this.bag, this.collectbag, null, this );
@@ -99,16 +99,24 @@ class computerlab extends Phaser.Scene {
     this.physics.add.collider(this.player, this.itemLayer);
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.frameLayer); 
+
+    //collect item
+    this.laptop = this.physics.add.sprite(684, 1109, 'laptop');
+
+    //collect action
+    this.physics.add.overlap(this.player, this.laptop, this.holditem3, null, this);
             
     }
 
     update() {
 
 
-      // if (window.holdbag == 1 ) {
-      //   this.bag.x = this.player.x+32
-      //   this.bag.y = this.player.y
-      // }
+     //hold laptop
+     if (window.holdlaptop == 3) {
+
+      this.laptop.x = this.player.x+32
+      this.laptop.y = this.player.y
+  }
 
     //go back to blockA counter
     if ( this.player.x < 116
@@ -151,15 +159,12 @@ class computerlab extends Phaser.Scene {
     this.scene.start("room1",{playerPos: playerPos});
   }
 
-  //  collectbag (player, sprite)
-  // {
-  //     console.log(' collectbag');
-  //     // this.score = this.score + 1 ;
-  //     // this.scoreText.setText(this.score);
-  //     sprite.disableBody(true, true);
+  //function to hold book
+  holditem3(player) {
+    console.log("hold item3")
 
-  //     return false;
-  // }
+    window.holdlaptop = 3
+}
 
     
 

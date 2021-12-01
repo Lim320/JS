@@ -87,12 +87,30 @@ class blockB extends Phaser.Scene {
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.itemLayer); 
     
-
+    this.laptop = this.physics.add.sprite(-10, -10, 'laptop');
 
         
     }
 
     update() {
+
+      //hold and drop book
+      if (window.holdlaptop == 3) {
+
+        this.laptop.x = this.player.x+32
+        this.laptop.y = this.player.y
+      }
+
+      if (
+        this.player.x > 990&&
+        this.player.x < 1010&&
+        this.player.y > 780&&
+        this.player.y < 794
+      ) {
+
+        console.log("droplaptop")
+        window.holdlaptop = 0
+      }
 
     //go back to worldmap, check for blockB exit
     if ( this.player.x > 560 && this.player.x < 719

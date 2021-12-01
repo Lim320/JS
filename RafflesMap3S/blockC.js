@@ -2,6 +2,7 @@ class blockC extends Phaser.Scene {
 
     constructor() {
         super({ key: 'blockC' });
+        window.holdgift = 0
         
         // Put global variable here
     }
@@ -19,9 +20,6 @@ class blockC extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
-
-    //collect items
-    this.load.image("gift","assets/gift.png");
 
     //npc girl1 movement
     this.load.atlas('npc1','assets/npc1.png','assets/npc1.json');
@@ -48,9 +46,7 @@ class blockC extends Phaser.Scene {
         this.frameLayer = map.createLayer("frameLayer",tilesArray, 0, 0);
         
     this.physics.world.bounds.width = this.bgLayer.width;   
-    this.physics.world.bounds.height = this.bgLayer.height;      
-    
-    this.gift = this.physics.add.sprite(217, 381, 'gift');
+    this.physics.world.bounds.height = this.bgLayer.height;     
     
      //girl_npc1_animation
      this.anims.create({
@@ -106,10 +102,24 @@ class blockC extends Phaser.Scene {
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.itemLayer); 
     this.physics.add.collider(this.player, this.frameLayer);
+   
+    //collect item
+    this.gift = this.physics.add.sprite(217, 381, 'gift');
+
+     //collect action
+     this.physics.add.overlap(this.player, this.gift, this.holditem1, null, this);
+
         
     }
 
     update() {
+
+      //hold gift
+      if (window.holdgift == 2) {
+
+        this.gift.x = this.player.x+32
+        this.gift.y = this.player.y
+    }
 
     //go back to worldmap, check for blockC exit
     if ( this.player.x > 560 && this.player.x < 719
@@ -150,6 +160,13 @@ class blockC extends Phaser.Scene {
     playerPos.dir = "down";
     this.scene.start("world",{ playerPos : playerPos });
   }
+
+  //function to hold book
+  holditem1(player) {
+    console.log("hold item1")
+
+    window.holdgift = 2
+}
 
     
 

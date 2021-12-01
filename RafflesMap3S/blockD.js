@@ -73,12 +73,19 @@ class blockD extends Phaser.Scene {
     this.physics.add.collider(this.player, this.tableLayer);
     this.physics.add.collider(this.player, this.itemLayer); 
     
-
-
-        
+   //collect item
+   this.gift = this.physics.add.sprite(-10, -10, 'gift');
+  
     }
 
     update() {
+
+       //hold gift
+     if (window.holdgift == 2) {
+
+      this.gift.x = this.player.x+32
+      this.gift.y = this.player.y
+  }
 
     //go back to worldmap, check for blockB exit
     if ( this.player.x < 55
