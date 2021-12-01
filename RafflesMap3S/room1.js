@@ -2,14 +2,14 @@ class room1 extends Phaser.Scene {
 
     constructor() {
         super({ key: 'room1' });
+        // window.holdbook = 0
         
         // Put global variable here
     }
 
 
     init(data) {
-        this.player = data.player
-        this.inventory = data.inventory
+        this.playerPos = data.playerPos;
     }
 
     preload() {
@@ -20,6 +20,11 @@ class room1 extends Phaser.Scene {
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
 
+    //npc sas movement
+    this.load.atlas('sas','assets/sas.png','assets/sas.json');
+
+    //collect items
+    this.load.image("book","assets/book.png");
     }
 
     create() {
@@ -42,7 +47,33 @@ class room1 extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.player = this.physics.add.sprite(639, 1120, "up");
+    //collect item
+    this.book = this.physics.add.sprite(423, 381, 'book');
+
+    //collect action
+    // this.physics.add.overlap(this.player, this.book, this.holditem, null, this);
+
+    //lecturer_sas_animation
+    this.anims.create({
+        key:'sasAnimation',
+        frames: [
+          { key: 'sas', frame: 'sas_2'},
+          { key: 'sas', frame: 'sas_1'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+
+    //sas_npc
+    this.sas = this.physics.add.sprite(647,656, "sas").play("sasAnimation");
+ 
+    //mainCharacter
+    this.player = this.physics.add.sprite(
+        this.playerPos.x,
+        this.playerPos.y,
+        this.playerPos.dir
+      );
 
     //enable debug
     window.player = this.player;
@@ -59,16 +90,22 @@ class room1 extends Phaser.Scene {
     this.frameLayer.setCollisionByExclusion(-1, true)
     this.furnitureLayer.setCollisionByExclusion(-1, true)
     this.itemLayer.setCollisionByExclusion(-1, true) 
-
+    this.carpetLayer.setCollisionByExclusion(-1, true) 
 
     this.physics.add.collider(this.player, this.frameLayer);
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.itemLayer); 
-    
-        
+    // this.physics.add.collider( this.sas, this.player) 
     }
 
     update() {
+
+        //hold book
+        // if (window.holdbook == 1){
+
+        //     this.book.x = this.player.x+32
+        //     this.book.y = this.player.y
+        // }
 
     //go back to worldmap, check for blockA exit
     if ( this.player.x > 592 && this.player.x < 687
@@ -78,7 +115,7 @@ class room1 extends Phaser.Scene {
 
     //go to computerlab
     if ( this.player.x > 1170
-        && this.player.y > 401 && this.player.y < 495 ) {
+        && this.player.y > 390 && this.player.y < 495 ) {
             this.computerlab();
         }
 
@@ -115,24 +152,39 @@ class room1 extends Phaser.Scene {
         // Function to jump to worldmap
      world(player, tile) {
         console.log("world function");
-        
-        // player.x = 352
-        // player.y = 1103
-
-        this.scene.start("world",{player: player});
+        let playerPos = {};
+        playerPos.x = 373;
+        playerPos.y = 1103;
+        playerPos.dir = "down";
+        this.scene.start("world",{playerPos: playerPos});
      }
 
         // Function to jump to computerlab
         computerlab(player, tile) {
             console.log("computerlab function");
-            this.scene.start("computerlab");
+            let playerPos = {};
+            playerPos.x = 172;
+            playerPos.y = 441;
+            playerPos.dir = "right";
+            this.scene.start("computerlab",{playerPos: playerPos});
         }
 
         // Function to jump to library
         library(player, tile) {
             console.log("library function");
-            this.scene.start("library");
+            let playerPos = {};
+            playerPos.x = 1120;
+            playerPos.y = 460;
+            playerPos.dir = "left";
+            this.scene.start("library",{playerPos: playerPos});
         }
+
+        //function to hold book
+        // holditem(player) {
+        //     console.log("hold item")
+
+        //     window.holdbook = 1
+        // }
 
     
 

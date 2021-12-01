@@ -16,7 +16,7 @@
     },
     backgroundColor: '#000000',
     pixelArt: true,
-    scene: [preload, world, room1, blockB, blockC, blockD, cafeteria, computerlab, library]
+    scene: [preload, intro1, intro2, intro3, intro4, intro5, intro6, world, room1, blockB, blockC, blockD, cafeteria, computerlab, library, instruction1, endScene]
 };
 
 var game = new Phaser.Game(config);

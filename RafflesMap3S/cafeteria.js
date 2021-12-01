@@ -8,7 +8,7 @@ class cafeteria extends Phaser.Scene {
 
 
     init(data) {
-        this.player = data.player
+        this.playerPos = data.playerPos
         this.inventory = data.inventory
     }
 
@@ -20,6 +20,22 @@ class cafeteria extends Phaser.Scene {
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("interior","assets/interior32x32.png")
     this.load.image("modern","assets/mordern32x32.png");
+
+     //collect items
+     this.load.image("food","assets/food.png");
+     this.load.image("lemonJuice","assets/lemonJuice.png");
+
+     //npc cafeteria movement
+     this.load.atlas('cafeteria','assets/cafeteria.png','assets/cafeteria.json');
+
+     //npc friends movement
+     this.load.atlas('friends','assets/friends.png','assets/friends.json');
+
+     //npc3 boy movement
+     this.load.atlas('npc3','assets/npc3.png','assets/npc3.json');
+ 
+     //npc4 boy movement
+     this.load.atlas('npc4','assets/npc4.png','assets/npc4.json');
 
     }
 
@@ -38,13 +54,75 @@ class cafeteria extends Phaser.Scene {
         this.wallLayer = map.createLayer("wallLayer",tilesArray, 0, 0);
         this.tableLayer = map.createLayer("tableLayer",tilesArray, 0, 0);
         this.itemLayer = map.createLayer("itemLayer",tilesArray, 0, 0);
-       
-    
 
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.player = this.physics.add.sprite(126, 540, "right");
+    this.food = this.physics.add.sprite(359, 419, 'food');
+    this.lemonJuice = this.physics.add.sprite(183, 419, 'lemonJuice');
+
+    //lecturer_npc_animation
+    this.anims.create({
+        key:'cafeteriaAnimation',
+        frames: [
+          { key: 'cafeteria', frame: 'cafeteria_2'},
+          { key: 'cafeteria', frame: 'cafeteria_1'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+      //friends_npc_animation
+    this.anims.create({
+        key:'friendsAnimation',
+        frames: [
+          { key: 'friends', frame: 'friends_1'},
+          { key: 'friends', frame: 'friends_2'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+      //boy_npc3_animation
+    this.anims.create({
+        key:'npc3Animation',
+        frames: [
+          { key: 'npc3', frame: 'npc3_2'},
+          { key: 'npc3', frame: 'npc3_1'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+      //boy_npc4_animation
+    this.anims.create({
+        key:'npc4Animation',
+        frames: [
+          { key: 'npc4', frame: 'npc4_2'},
+          { key: 'npc4', frame: 'npc4_1'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+      //main character
+      this.player = this.physics.add.sprite(
+        this.playerPos.x,
+        this.playerPos.y,
+        this.playerPos.dir
+      );
+
+    //lecturer_npc
+    this.add.sprite(395,418, "cafeteria").play("cafeteriaAnimation");
+
+    //lecturer_npc
+    this.add.sprite(679,592, "friends").play("friendsAnimation");
+
+    //lecturer_npc
+    this.add.sprite(859,896, "npc3").play("npc3Animation");
+
+    //lecturer_npc
+    this.add.sprite(198,869, "npc4").play("npc4Animation");
 
     //enable debug
     window.player = this.player;
@@ -116,17 +194,21 @@ class cafeteria extends Phaser.Scene {
     // Function to jump to room1
   world(player, tile) {
     console.log("world function");
-    
-    // player.x = 352
-    // player.y = 1103
-
-    this.scene.start("world");
+    let playerPos = {};
+    playerPos.x = 1624;
+    playerPos.y = 432;
+    playerPos.dir = "down";
+    this.scene.start("world",{playerPos: playerPos});
   }
 
   //function to jump to blockD
   blockD(player, tile) {
     console.log("blockD function");
-    this.scene.start("blockD");
+    let playerPos = {};
+    playerPos.x = 1199;
+    playerPos.y = 543;
+    playerPos.dir = "left";
+    this.scene.start("blockD",{playerPos: playerPos});
   }
 
     

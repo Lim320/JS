@@ -8,7 +8,7 @@ class library extends Phaser.Scene {
 
 
     init(data) {
-        this.player = data.player
+        this.playerPos = data.playerPos
         this.inventory = data.inventory
     }
 
@@ -19,6 +19,9 @@ class library extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
+
+    //librarian_npc
+    this.load.atlas('librarian','assets/librarys.png','assets/librarys.json');
 
     }
 
@@ -41,7 +44,32 @@ class library extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.player = this.physics.add.sprite(1102, 460, "left");
+      //librarian_npc_animation
+      this.anims.create({
+        key:'librarianAnimation',
+        frames: [
+          { key: 'librarian', frame: 'library_2'},
+          { key: 'librarian', frame: 'library_1'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+      //main_character
+      this.player = this.physics.add.sprite(
+        this.playerPos.x,
+        this.playerPos.y,
+        this.playerPos.dir
+      );
+      
+
+      //collect item
+      this.book = this.physics.add.sprite(-10, -10, 'book');
+
+    //guard_npc
+    this.add.sprite(838, 440, "librarian").play("librarianAnimation")
+
+   
 
     //enable debug
     window.player = this.player;
@@ -70,6 +98,24 @@ class library extends Phaser.Scene {
     }
 
     update() {
+
+      //hold and drop book
+      if (window.holdbook == 1) {
+
+        this.book.x = this.player.x+32
+        this.book.y = this.player.y
+      }
+
+      if (
+        this.player.x > 843&&
+        this.player.x < 863&&
+        this.player.y > 443&&
+        this.player.y < 466
+      ) {
+
+        console.log("dropbook")
+        window.holdbook = 0
+      }
 
     //go back to blockA counter
     if ( this.player.x > 1163
@@ -102,20 +148,14 @@ class library extends Phaser.Scene {
         }
     }
 
-    // Function to jump to room1
-  world(player, tile) {
-    console.log("world function");
-    
-    // player.x = 352
-    // player.y = 1103
-
-    this.scene.start("world");
-  }
-
   // Function to jump to room1
   room1(player, tile) {
     console.log("room1 function");
-    this.scene.start("room1");
+    let playerPos = {};
+    playerPos.x = 172;
+    playerPos.y = 823;
+    playerPos.dir = "right";
+    this.scene.start("room1",{playerPos: playerPos});
   }
 
     

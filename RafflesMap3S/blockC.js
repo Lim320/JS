@@ -8,7 +8,7 @@ class blockC extends Phaser.Scene {
 
 
     init(data) {
-        this.player = data.player
+        this.playerPos = data.playerPos
         this.inventory = data.inventory
     }
 
@@ -19,6 +19,15 @@ class blockC extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
+
+    //collect items
+    this.load.image("gift","assets/gift.png");
+
+    //npc girl1 movement
+    this.load.atlas('npc1','assets/npc1.png','assets/npc1.json');
+
+    //npc girl2 movement
+    this.load.atlas('npc2','assets/npc2.png','assets/npc2.json');
 
     }
 
@@ -39,9 +48,44 @@ class blockC extends Phaser.Scene {
         this.frameLayer = map.createLayer("frameLayer",tilesArray, 0, 0);
         
     this.physics.world.bounds.width = this.bgLayer.width;   
-    this.physics.world.bounds.height = this.bgLayer.height;                                                                                    
+    this.physics.world.bounds.height = this.bgLayer.height;      
+    
+    this.gift = this.physics.add.sprite(217, 381, 'gift');
+    
+     //girl_npc1_animation
+     this.anims.create({
+        key:'npc1Animation',
+        frames: [
+          { key: 'npc1', frame: 'npc1_1'},
+          { key: 'npc1', frame: 'npc1_2'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
 
-    this.player = this.physics.add.sprite(639, 1122, "up");
+      //girl_npc2_animation
+    this.anims.create({
+        key:'npc2Animation',
+        frames: [
+          { key: 'npc2', frame: 'npc2_2'},
+          { key: 'npc2', frame: 'npc2_1'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+    //main_character
+    this.player = this.physics.add.sprite(
+      this.playerPos.x,
+      this.playerPos.y,
+      this.playerPos.dir
+    );
+
+      //girl_npc1
+    this.add.sprite(445,728, "npc1").play("npc1Animation");
+
+    //girl_npc2
+    this.add.sprite(1030,451, "npc2").play("npc2Animation");
 
     //enable debug
     window.player = this.player;
@@ -100,11 +144,11 @@ class blockC extends Phaser.Scene {
     // Function to jump to room1
   world(player, tile) {
     console.log("world function");
-    
-    // player.x = 352
-    // player.y = 1103
-
-    this.scene.start("world");
+    let playerPos = {};
+    playerPos.x = 1257;
+    playerPos.y = 623;
+    playerPos.dir = "down";
+    this.scene.start("world",{ playerPos : playerPos });
   }
 
     

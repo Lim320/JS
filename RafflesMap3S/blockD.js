@@ -8,7 +8,7 @@ class blockD extends Phaser.Scene {
 
 
     init(data) {
-        this.player = data.player
+        this.playerPos = data.playerPos
         this.inventory = data.inventory
     }
 
@@ -44,7 +44,13 @@ class blockD extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.player = this.physics.add.sprite(123, 543, "right");
+
+      //main character
+      this.player = this.physics.add.sprite(
+        this.playerPos.x,
+        this.playerPos.y,
+        this.playerPos.dir
+      );
 
     //enable debug
     window.player = this.player;
@@ -114,17 +120,21 @@ class blockD extends Phaser.Scene {
     // Function to jump to room1
   world(player, tile) {
     console.log("world function");
-    
-    // player.x = 352
-    // player.y = 1103
-
-    this.scene.start("world");
+    let playerPos = {};
+    playerPos.x = 1624;
+    playerPos.y = 432;
+    playerPos.dir = "down";
+    this.scene.start("world",{playerPos: playerPos});
   }
 
     //function to jump to blockD
     cafeteria(player, tile) {
         console.log("cafeteria function");
-        this.scene.start("cafeteria");
+        let playerPos = {};
+        playerPos.x = 86;
+        playerPos.y = 540;
+        playerPos.dir = "right";
+        this.scene.start("cafeteria",{playerPos: playerPos});
     }
 
     

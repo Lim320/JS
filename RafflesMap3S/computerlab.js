@@ -8,7 +8,7 @@ class computerlab extends Phaser.Scene {
 
 
     init(data) {
-        this.player = data.player
+        this.playerPos = data.playerPos
         this.inventory = data.inventory
     }
 
@@ -19,6 +19,12 @@ class computerlab extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
+
+    //collect items
+    this.load.image("bag","assets/bag.png");
+    this.load.image("laptop","assets/laptop.png");
+
+    //score
 
     }
 
@@ -41,7 +47,37 @@ class computerlab extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.player = this.physics.add.sprite(186, 441, "right");
+    this.bag = this.physics.add.sprite(607, 1109, 'bag');
+    this.laptop = this.physics.add.sprite(684, 1109, 'laptop');
+
+    //overlap
+    // this.physics.add.overlap(this.player, this.bag, this.collectbag, null, this );
+
+    // this text will show the score
+    // this.scoreText = this.add.text(650, 50, this.score, {
+    //   fontSize: '30px',
+    //   fill: '#000000'
+    //   });
+
+      // fix the text to the camera
+      // this.scoreText.setScrollFactor(0);
+      // this.scoreText.visible = true;
+
+      // this.anims.create({
+      //   key: this.player,
+      //   frames: [{key: this.player, frame: this.player}],
+      //   frameRate: 10,
+      //   });
+
+    //main character
+    // this.player = this.physics.add.sprite(186, 441, "right");
+
+    //mainCharacter
+    this.player = this.physics.add.sprite(
+      this.playerPos.x,
+      this.playerPos.y,
+      this.playerPos.dir
+    );
 
     //enable debug
     window.player = this.player;
@@ -63,13 +99,16 @@ class computerlab extends Phaser.Scene {
     this.physics.add.collider(this.player, this.itemLayer);
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.frameLayer); 
-    
-
-
-        
+            
     }
 
     update() {
+
+
+      // if (window.holdbag == 1 ) {
+      //   this.bag.x = this.player.x+32
+      //   this.bag.y = this.player.y
+      // }
 
     //go back to blockA counter
     if ( this.player.x < 116
@@ -102,21 +141,25 @@ class computerlab extends Phaser.Scene {
         }
     }
 
-    // Function to jump to room1
-  world(player, tile) {
-    console.log("world function");
-    
-    // player.x = 352
-    // player.y = 1103
-
-    this.scene.start("world");
-  }
-
   // Function to jump to room1
   room1(player, tile) {
     console.log("room1 function");
-    this.scene.start("room1");
+    let playerPos = {};
+    playerPos.x = 1150;
+    playerPos.y = 449;
+    playerPos.dir = "left";
+    this.scene.start("room1",{playerPos: playerPos});
   }
+
+  //  collectbag (player, sprite)
+  // {
+  //     console.log(' collectbag');
+  //     // this.score = this.score + 1 ;
+  //     // this.scoreText.setText(this.score);
+  //     sprite.disableBody(true, true);
+
+  //     return false;
+  // }
 
     
 

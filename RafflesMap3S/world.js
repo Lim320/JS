@@ -7,10 +7,8 @@ class world extends Phaser.Scene {
 
   // incoming data from scene below
   init(data) {
-
-    // let playerPos.x = data.player.x
-    // let playerPos.y = data.player.y
-
+    
+    this.playerPos = data.playerPos;
   }
 
   preload() {
@@ -25,10 +23,14 @@ class world extends Phaser.Scene {
     this.load.image("tree","assets/tree.png");
     this.load.image("village","assets/village32x32.png");
 
-    this.load.atlas( 'left', 'assets/left.png', 'assets/left.json'); 
-    this.load.atlas( 'right', 'assets/right.png', 'assets/right.json');
-    this.load.atlas( 'up', 'assets/up.png', 'assets/up.json');
-    this.load.atlas( 'down', 'assets/down.png', 'assets/down.json');
+    //npc guard movement
+    this.load.atlas('guard','assets/guard.png','assets/guard.json');
+
+  //  //main character movement
+  //   this.load.atlas( 'left', 'assets/left.png', 'assets/left.json'); 
+  //   this.load.atlas( 'right', 'assets/right.png', 'assets/right.json');
+  //   this.load.atlas( 'up', 'assets/up.png', 'assets/up.json');
+  //   this.load.atlas( 'down', 'assets/down.png', 'assets/down.json');
   }
 
   create() {
@@ -54,55 +56,67 @@ class world extends Phaser.Scene {
     this.decorLayer = map.createLayer("decorLayer", tilesArray, 0, 0);
     this.buildingLayer = map.createLayer("BuildingLayer", tilesArray, 0, 0);
       
-    this.anims.create({ 
-      key: 'left',
-      frames: [
-        { key: 'left', frame: 'left(2)'}, 
-        { key: 'left', frame: 'left(3)'},
-        { key: 'left', frame: 'left(1)'},
-        { key: 'left', frame: 'left(4)'},
+    // //main character animation_movement
+    // this.anims.create({ 
+    //   key: 'left',
+    //   frames: [
+    //     { key: 'left', frame: 'left(1)'}, 
+    //     { key: 'left', frame: 'left(2)'},
+    //     { key: 'left', frame: 'left(4)'},
+    //     { key: 'left', frame: 'left(3)'},
 
-      ],
-      frameRate: 6, 
-      repeat: -1
-    })
+    //   ],
+    //   frameRate: 6, 
+    //   repeat: -1
+    // })
 
+    // this.anims.create({
+    //   key: 'right',
+    //   frames: [
+    //     { key: 'right', frame: 'right(1)'},
+    //     { key: 'right', frame: 'right(2)'},
+    //     { key: 'right', frame: 'right(4)'},
+    //     { key: 'right', frame: 'right(3)'},
+
+    //   ],
+    //   frameRate: 6,
+    //   repeat: -1
+    // })
+
+
+
+    // this.anims.create({
+    //   key: 'up',
+    //   frames: [
+    //     { key: 'up', frame: 'up(1)'},
+    //     { key: 'up', frame: 'up(2)'},
+    //     { key: 'up', frame: 'up(4)'},
+    //     { key: 'up', frame: 'up(3)'},
+    //   ],
+    //   frameRate: 6,
+    //   repeat: -1
+    // })
+
+    //  this.anims.create({
+    //   key: 'down',
+    //   frames: [
+    //     { key: 'down', frame: 'down(2)'},
+    //     { key: 'down', frame: 'down(1)'},
+    //     { key: 'down', frame: 'down(4)'},
+    //     { key: 'down', frame: 'down(3)'},
+    //   ],
+    //   frameRate: 6,
+    //   repeat: -1
+    // })
+
+    //guard_npc_animation
     this.anims.create({
-      key: 'right',
+      key:'guardAnimation',
       frames: [
-        { key: 'right', frame: 'right(2)'},
-        { key: 'right', frame: 'right(3)'},
-        { key: 'right', frame: 'right(1)'},
-        { key: 'right', frame: 'right(4)'},
-
+        { key: 'guard', frame: 'guard_2'},
+        { key: 'guard', frame: 'guard_1'},
       ],
-      frameRate: 6,
-      repeat: -1
-    })
-
-
-
-    this.anims.create({
-      key: 'up',
-      frames: [
-        { key: 'up', frame: 'up(2)'},
-        { key: 'up', frame: 'up(4)'},
-        { key: 'up', frame: 'up(1)'},
-        { key: 'up', frame: 'up(3)'},
-      ],
-      frameRate: 6,
-      repeat: -1
-    })
-
-     this.anims.create({
-      key: 'down',
-      frames: [
-        { key: 'down', frame: 'down(1)'},
-        { key: 'down', frame: 'down(2)'},
-        { key: 'down', frame: 'down(3)'},
-        { key: 'down', frame: 'down(4)'},
-      ],
-      frameRate: 6,
+      frameRate: 2,
       repeat: -1
     })
 
@@ -110,18 +124,20 @@ class world extends Phaser.Scene {
     this.physics.world.bounds.height = this.groundLayer.height;
 
     // Object layers
-    var startPoint = map.findObject(
-      "objectLayer",
-      (obj) => obj.name === "startPoint"
+    //main_character
+    // var start = map.findObject("objectLayer",(obj) => obj.name === "start");
+    // this.player = this.physics.add.sprite(start.x, start.y, 'down');
+
+    //mainCharacter
+    this.player = this.physics.add.sprite(
+      this.playerPos.x,
+      this.playerPos.y,
+      this.playerPos.dir,
     );
-    // var endPoint = map.findObject(
-    //   "objectLayer",
-    //   (obj) => obj.name === "endPoint"
-    // );
 
-    var start = map.findObject("objectLayer",(obj) => obj.name === "start");
 
-    this.player = this.physics.add.sprite(start.x, start.y, 'up');
+    //guard_npc
+    this.add.sprite(770, 457, "guard").play("guardAnimation");
 
     //enable debug
     window.player = this.player;
@@ -154,7 +170,7 @@ class world extends Phaser.Scene {
           }
     
     // check for BlockB door
-    if ( this.player.x > 546 && this.player.x < 570
+    if ( this.player.x > 520 && this.player.x < 580
       && this.player.y > 560 && this.player.y < 565 ) {
 
         this.blockB()
@@ -167,28 +183,36 @@ class world extends Phaser.Scene {
           this.blockC()
         }
 
+     //this is exit for endScene!
+     if ( this.player.x > 656 && this.player.x < 720
+        && this.player.y > 1238) {
+  
+          this.endScene()
+        }
+
+
     //check for BlockD entrance
-      if ( this.player.x > 1603 && this.player.x < 1633
-        && this.player.y > 400 && this.player.y < 405 ) {
+      if ( this.player.x > 1576 && this.player.x < 1643
+        && this.player.y > 400 && this.player.y < 413 ) {
 
           this.blockD()
         }
 
     if (this.cursors.left.isDown) {
-      this.player.body.setVelocityX(-200);
+      this.player.body.setVelocityX(-500);
       this.player.anims.play("left", true); 
     } 
     else if (this.cursors.right.isDown) {
-      this.player.body.setVelocityX(200);
+      this.player.body.setVelocityX(500);
       this.player.anims.play("right", true);
     } 
     else if (this.cursors.up.isDown) {
-      this.player.body.setVelocityY(-200);
+      this.player.body.setVelocityY(-500);
       this.player.anims.play("up", true);
       //console.log('up');
     } 
     else if (this.cursors.down.isDown) {
-      this.player.body.setVelocityY(200);
+      this.player.body.setVelocityY(500);
       this.player.anims.play("down", true);
       //console.log('down');
     } 
@@ -201,25 +225,47 @@ class world extends Phaser.Scene {
   // Function to jump to room1
   room1(player, tile) {
     console.log("room1 function");
-    this.scene.start("room1");
+    let playerPos = {};
+    playerPos.x = 643;
+    playerPos.y = 1089;
+    playerPos.dir = "up";
+    this.scene.start("room1",{ playerPos : playerPos });
   }
 
   //function to jump to blockB
   blockB(player, tile) {
     console.log("blockB function");
-    this.scene.start("blockB");
+    let playerPos = {};
+    playerPos.x = 639;
+    playerPos.y = 1105;
+    playerPos.dir = "up";
+    this.scene.start("blockB",{ playerPos : playerPos });
   }
 
   //function to jump to blockC
   blockC(player, tile) {
     console.log("blockC function");
-    this.scene.start("blockC");
+    let playerPos = {};
+    playerPos.x = 639;
+    playerPos.y = 1122;
+    playerPos.dir = "up";
+    this.scene.start("blockC",{ playerPos : playerPos });
   }
 
   //function to jump to blockD
   blockD(player, tile) {
     console.log("blockD function");
-    this.scene.start("blockD");
+    let playerPos = {};
+    playerPos.x = 123;
+    playerPos.y = 543;
+    playerPos.dir = "right";
+    this.scene.start("blockD",{ playerPos : playerPos });
+  }
+
+  //function to jump to endScene
+  endScene(player,tile) {
+    console.log("endScene function");
+    this.scene.start("endScene");
   }
 
 } //////////// end of class world ////////////////////////

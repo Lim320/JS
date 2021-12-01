@@ -8,7 +8,7 @@ class blockB extends Phaser.Scene {
 
 
     init(data) {
-        this.player = data.player
+        this.playerPos = data.playerPos
         this.inventory = data.inventory
     }
 
@@ -19,6 +19,9 @@ class blockB extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
+
+    //npc lecturer movement
+    this.load.atlas('lecturer','assets/lecturer.png','assets/lecturer.json');
 
     }
 
@@ -42,7 +45,26 @@ class blockB extends Phaser.Scene {
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;
 
-    this.player = this.physics.add.sprite(639, 1105, "up");
+    //lecturer_npc_animation
+    this.anims.create({
+        key:'lecturerAnimation',
+        frames: [
+          { key: 'lecturer', frame: 'lecturer_2'},
+          { key: 'lecturer', frame: 'lecturer_1'},
+        ],
+        frameRate: 2,
+        repeat: -1
+      })
+
+      //main_character
+      this.player = this.physics.add.sprite(
+        this.playerPos.x,
+        this.playerPos.y,
+        this.playerPos.dir,
+      );
+
+    //lecturer_npc
+    this.add.sprite(1049,790, "lecturer").play("lecturerAnimation");
 
     //enable debug
     window.player = this.player;
@@ -105,11 +127,11 @@ class blockB extends Phaser.Scene {
     // Function to jump to room1
   world(player, tile) {
     console.log("world function");
-    
-    // player.x = 352
-    // player.y = 1103
-
-    this.scene.start("world");
+    let playerPos = {};
+    playerPos.x = 554;
+    playerPos.y = 585;
+    playerPos.dir = "down";
+    this.scene.start("world",{ playerPos : playerPos });
   }
 
     
