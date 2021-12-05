@@ -78,10 +78,26 @@ class blockC extends Phaser.Scene {
     );
 
       //girl_npc1
-    this.add.sprite(445,728, "npc1").play("npc1Animation");
+    this.npc1 = this.add.sprite(445,728, "npc1").play("npc1Animation");
 
     //girl_npc2
-    this.add.sprite(1030,451, "npc2").play("npc2Animation");
+    this.npc2 = this.add.sprite(1030,451, "npc2").play("npc2Animation");
+
+    //npc1 tween
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.moveLeftRight,
+      callbackScope: this,
+      loop: false,
+    });
+
+    //npc2 tween
+    this.time.addEvent({
+      delay: 0,
+      callback: this.moveDownUp2,
+      callbackScope: this,
+      loop: false,
+    });
 
     //enable debug
     window.player = this.player;
@@ -149,6 +165,44 @@ class blockC extends Phaser.Scene {
         this.player.anims.stop(); 
         this.player.body.setVelocity(0, 0);
         }
+    }
+
+    //npc1 tween
+    moveLeftRight() {
+      console.log("moveLeftRight");
+      this.tweens.timeline({
+        targets: this.npc1,
+        loop: -1, // loop forever
+        ease: "Linear",
+        duration: 3000,
+        tweens: [
+          {
+            x: 350,
+          },
+          {
+            x: 445, 
+          },
+        ],
+      });
+    }
+
+    //npc2 tween
+    moveDownUp2() {
+      console.log("moveDownUp");
+      this.tweens.timeline({
+        targets: this.npc2,
+        loop: -1, // loop forever
+        ease: "Linear",
+        duration: 4000,
+        tweens: [
+          {
+            y: 650,
+          },
+          {
+            y: 451, 
+          },
+        ],
+      });
     }
 
     // Function to jump to room1

@@ -22,6 +22,16 @@ class preload extends Phaser.Scene {
      this.load.atlas( 'right', 'assets/right.png', 'assets/right.json');
      this.load.atlas( 'up', 'assets/up.png', 'assets/up.json');
      this.load.atlas( 'down', 'assets/down.png', 'assets/down.json');
+
+     //collect sound
+     this.load.audio("collect","assets/collectsound.wav");
+
+     //background music
+     this.load.audio("bgmusic","assets/bgsound.mp3");
+
+
+    //  //star_collect
+    //  this.load.image("star","assets/star.png");
     
   }
 
@@ -94,6 +104,14 @@ class preload extends Phaser.Scene {
 
     // Check for spacebar or any key here
     var spaceDown = this.input.keyboard.addKey("SPACE");
+    var key1 = this.input.keyboard.addKey(49);
+    var key2 = this.input.keyboard.addKey(50);
+    var key3 = this.input.keyboard.addKey(51);
+    var key4 = this.input.keyboard.addKey(52);
+    var key5 = this.input.keyboard.addKey(53);
+    var key6 = this.input.keyboard.addKey(54);
+    var key7 = this.input.keyboard.addKey(55);
+    var key8 = this.input.keyboard.addKey(56);
 
     
 
@@ -106,6 +124,96 @@ class preload extends Phaser.Scene {
     },
     this
   );
+
+  //call the computerlab scene
+  key1.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 592;
+    playerPos.y = 1037;
+    playerPos.dir = "down";
+    this.scene.start("computerlab",{ playerPos : playerPos });
+  },
+  this
+  );
+
+   //call the world scene
+  key2.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 686;
+    playerPos.y = 713;
+    playerPos.dir = "up";
+    this.scene.start("world",{ playerPos : playerPos });
+  },
+  this
+  );
+
+   //call the blockB scene
+  key3.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 639;
+    playerPos.y = 1105;
+    playerPos.dir = "up";
+    this.scene.start("blockB",{ playerPos : playerPos });
+  },
+  this
+  );
+
+  //call the blockC scene
+  key4.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 639;
+    playerPos.y = 1122;
+    playerPos.dir = "up";
+    this.scene.start("blockC",{ playerPos : playerPos });
+  },
+  this
+  );
+
+  //call the blockD scene
+  key5.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 123;
+    playerPos.y = 543;
+    playerPos.dir = "right";
+    this.scene.start("blockD",{ playerPos : playerPos });
+  },
+  this
+  );
+
+  //call the library scene
+  key6.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 1120;
+    playerPos.y = 460;
+    playerPos.dir = "left";
+    this.scene.start("library",{ playerPos : playerPos });
+  },
+  this
+  );
+
+  //call the room1 scene
+  key7.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 643;
+    playerPos.y = 1089;
+    playerPos.dir = "up";
+    this.scene.start("room1",{ playerPos : playerPos });
+  },
+  this
+  );
+
+  //call the cafeteria scene
+  key8.on("down", function(){
+    let playerPos = {};
+    playerPos.x = 86;
+    playerPos.y = 540;
+    playerPos.dir = "right";
+    this.scene.start("cafeteria",{ playerPos : playerPos });
+  },
+  this
+  );
+
+ 
 
     // Add any text in the main page
     // this.add.text(90, 600, "Press spacebar to continue", {

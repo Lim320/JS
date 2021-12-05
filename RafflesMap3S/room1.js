@@ -19,6 +19,8 @@ class room1 extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
+     //star_collect
+     this.load.image("star","assets/star.png");
 
     //npc sas movement
     this.load.atlas('sas','assets/sas.png','assets/sas.json');

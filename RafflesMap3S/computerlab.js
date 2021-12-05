@@ -24,6 +24,8 @@ class computerlab extends Phaser.Scene {
     //collect items
     this.load.image("bag","assets/bag.png");
     this.load.image("laptop","assets/laptop.png");
+    //star_collect
+    this.load.image("star","assets/star.png");
 
     //score
 
@@ -33,6 +35,9 @@ class computerlab extends Phaser.Scene {
         console.log('*** computerlab scene');
 
         let map = this.make.tilemap({key: "computerlabBA"});
+
+         //collectsound
+         this.collectsound = this.sound.add("collect");
 
         let atlasTiles = map.addTilesetImage("atlas32x32","atlas");
         let mordernTiles = map.addTilesetImage("mordern32x32","modern");
@@ -106,6 +111,9 @@ class computerlab extends Phaser.Scene {
 
     //collect action_laptop
     this.physics.add.overlap(this.player, this.laptop, this.holditem3, null, this);
+
+    //star
+   this.star1 = this.add.sprite(40,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
             
     }
 
@@ -170,6 +178,9 @@ class computerlab extends Phaser.Scene {
 collectItem (player,bag)
   {
   bag.disableBody(true,true);
+  this.star1.setVisible(true);
+  this.collectsound.play();
+  window.stars++;
    }
 
     

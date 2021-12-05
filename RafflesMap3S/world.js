@@ -35,6 +35,12 @@ class world extends Phaser.Scene {
   create() {
     console.log("*** world scene");
 
+    //background_sound
+    this.music = this.sound.add("bgmusic", {
+      loop: true,
+    }).setVolume(0.2);this.music.play();
+    
+
     //Step 3 - Create the map from main
     let map = this.make.tilemap({key:'worldmap'}); 
 
@@ -76,9 +82,19 @@ class world extends Phaser.Scene {
       this.playerPos.dir,
     );
 
+    //window.stars
+    window.player = this.player;
 
     //guard_npc
-    this.add.sprite(770, 457, "guard").play("guardAnimation");
+    this.guard = this.add.sprite(770, 457, "guard").play("guardAnimation");
+
+     // enemy tween
+     this.time.addEvent({
+      delay: 0,
+      callback: this.moveDownUp,
+      callbackScope: this,
+      loop: false,
+    });
 
     //enable debug
     window.player = this.player;
@@ -145,7 +161,7 @@ class world extends Phaser.Scene {
 
      //this is exit for endScene!
      if ( this.player.x > 656 && this.player.x < 720
-        && this.player.y > 1238) {
+        && this.player.y > 1238 && window.stars >= 6 ) {
   
           this.endScene()
         }
@@ -181,6 +197,24 @@ class world extends Phaser.Scene {
       this.player.body.setVelocity(0, 0);
     }
   } /////////////////// end of update //////////////////////////////
+
+    moveDownUp() {
+    console.log("moveDownUp");
+    this.tweens.timeline({
+      targets: this.guard,
+      loop: -1, // loop forever
+      ease: "Linear",
+      duration: 4000,
+      tweens: [
+        {
+          y: 550,
+        },
+        {
+          y: 457, 
+        },
+      ],
+    });
+  }
 
   // Function to jump to room1
   room1(player, tile) {

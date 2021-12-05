@@ -19,6 +19,8 @@ class library extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
+     //star_collect
+     this.load.image("star","assets/star.png");
 
     //librarian_npc
     this.load.atlas('librarian','assets/librarys.png','assets/librarys.json');
@@ -27,6 +29,8 @@ class library extends Phaser.Scene {
 
     create() {
         console.log('*** library scene');
+
+        this.collectsound = this.sound.add("collect");
 
         let map = this.make.tilemap({key: "libraryBA"});
 
@@ -93,7 +97,8 @@ class library extends Phaser.Scene {
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.frameLayer); 
     
-
+    //star
+    this.star2 = this.add.sprite(110,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
 
         
     }
@@ -116,6 +121,9 @@ class library extends Phaser.Scene {
 
         console.log("dropbook")
         window.holdbook = 0
+        this.star2.setVisible(true);
+        this.collectsound.play();
+        window.stars++;
       }
 
       //hold laptop

@@ -20,7 +20,6 @@ class blockD extends Phaser.Scene {
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("interior","assets/interior32x32.png")
     this.load.image("modern","assets/mordern32x32.png");
-
     }
 
     create() {
@@ -38,8 +37,6 @@ class blockD extends Phaser.Scene {
         this.wallLayer = map.createLayer("wallLayer",tilesArray, 0, 0);
         this.tableLayer = map.createLayer("tableLayer",tilesArray, 0, 0);
         this.itemLayer = map.createLayer("itemLayer",tilesArray, 0, 0);
-       
-    
 
     this.physics.world.bounds.width = this.bgLayer.width; 
     this.physics.world.bounds.height = this.bgLayer.height;

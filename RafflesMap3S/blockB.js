@@ -19,6 +19,8 @@ class blockB extends Phaser.Scene {
     //load image
     this.load.image("atlas","assets/atlas32x32.png");
     this.load.image("modern","assets/mordern32x32.png");
+     //star_collect
+     this.load.image("star","assets/star.png");
 
     //npc lecturer movement
     this.load.atlas('lecturer','assets/lecturer.png','assets/lecturer.json');
@@ -89,6 +91,9 @@ class blockB extends Phaser.Scene {
     
     this.laptop = this.physics.add.sprite(-10, -10, 'laptop');
 
+     //star
+     this.star3 = this.add.sprite(180,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+
         
     }
 
@@ -110,6 +115,8 @@ class blockB extends Phaser.Scene {
 
         console.log("droplaptop")
         window.holdlaptop = 0
+        this.star3.setVisible(true);
+        window.stars++;
       }
 
     //go back to worldmap, check for blockB exit

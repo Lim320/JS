@@ -20,3 +20,4 @@
 };
 
 var game = new Phaser.Game(config);
+window.stars = 0;

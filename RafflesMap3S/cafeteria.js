@@ -24,6 +24,8 @@ class cafeteria extends Phaser.Scene {
      //collect items
      this.load.image("food","assets/food.png");
      this.load.image("lemonJuice","assets/lemonJuice.png");
+       //star_collect
+       this.load.image("star","assets/star.png");
 
      //npc cafeteria movement
      this.load.atlas('cafeteria','assets/cafeteria.png','assets/cafeteria.json');
@@ -43,6 +45,9 @@ class cafeteria extends Phaser.Scene {
         console.log('*** cafeteria scene');
 
         let map = this.make.tilemap({key: "cafeteriatile"});
+
+        //collectsound
+        this.collectsound = this.sound.add("collect");
 
         let atlasTiles = map.addTilesetImage("atlas32x32","atlas");
         let interiorTiles = map.addTilesetImage("interior32x32","interior");
@@ -109,17 +114,33 @@ class cafeteria extends Phaser.Scene {
         this.playerPos.dir
       );
 
-    //lecturer_npc
+    //cafeterian
     this.add.sprite(395,418, "cafeteria").play("cafeteriaAnimation");
 
-    //lecturer_npc
+    //npc_friends_lily
     this.add.sprite(679,592, "friends").play("friendsAnimation");
 
-    //lecturer_npc
-    this.add.sprite(859,896, "npc3").play("npc3Animation");
+    //npc3
+    this.npc3 = this.add.sprite(859,896, "npc3").play("npc3Animation");
 
-    //lecturer_npc
-    this.add.sprite(198,869, "npc4").play("npc4Animation");
+    //npc4
+    this.npc4 = this.add.sprite(198,869, "npc4").play("npc4Animation");
+
+    //npc4 tween
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.moveRightLeft,
+      callbackScope: this,
+      loop: false,
+    });
+
+    //npc3 tween
+    this.time.addEvent({
+      delay: 0,
+      callback: this.moveDownUp3,
+      callbackScope: this,
+      loop: false,
+    });
 
     //enable debug
     window.player = this.player;
@@ -153,6 +174,11 @@ class cafeteria extends Phaser.Scene {
      this.physics.add.overlap(this.player, this.food, this.collectItem2, null, this );
      this.physics.add.overlap(this.player, this.lemonJuice, this.collectItem3, null, this );
 
+      //star
+     this.star4 = this.add.sprite(250,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+     this.star5 = this.add.sprite(320,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+     this.star6 = this.add.sprite(390,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+
 
     }
 
@@ -174,6 +200,9 @@ class cafeteria extends Phaser.Scene {
 
         console.log("dropgift")
         window.holdgift = 0
+        this.star4.setVisible(true);
+        this.collectsound.play();
+        window.stars++;
       }
 
     //go back to blockD classroom
@@ -215,6 +244,44 @@ class cafeteria extends Phaser.Scene {
         }
     }
 
+     //npc4 tween
+     moveRightLeft() {
+      console.log("moveRightLeft");
+      this.tweens.timeline({
+        targets: this.npc4,
+        loop: -1, // loop forever
+        ease: "Linear",
+        duration: 3000,
+        tweens: [
+          {
+            x: 310,
+          },
+          {
+            x: 198, 
+          },
+        ],
+      });
+    }
+
+     //npc2 tween
+     moveDownUp3() {
+      console.log("moveDownUp");
+      this.tweens.timeline({
+        targets: this.npc3,
+        loop: -1, // loop forever
+        ease: "Linear",
+        duration: 4000,
+        tweens: [
+          {
+            y: 790,
+          },
+          {
+            y: 896, 
+          },
+        ],
+      });
+    }
+
     // Function to jump to room1
   world(player, tile) {
     console.log("world function");
@@ -238,11 +305,17 @@ class cafeteria extends Phaser.Scene {
   collectItem2 (player,food)
   {
   food.disableBody(true,true);
+  this.star5.setVisible(true);
+  this.collectsound.play();
+        window.stars++;
    }
 
    collectItem3 (player,lemonJuice)
   {
   lemonJuice.disableBody(true,true);
+  this.star6.setVisible(true);
+  this.collectsound.play();
+        window.stars++;
    }
 
     
