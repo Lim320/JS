@@ -65,6 +65,7 @@ class library extends Phaser.Scene {
 
       //collect item
       this.book = this.physics.add.sprite(-10, -10, 'book');
+      this.laptop = this.physics.add.sprite(-10, -10, 'laptop');
 
     //guard_npc
     this.add.sprite(838, 440, "librarian").play("librarianAnimation")
@@ -116,6 +117,13 @@ class library extends Phaser.Scene {
         console.log("dropbook")
         window.holdbook = 0
       }
+
+      //hold laptop
+     if (window.holdlaptop == 3) {
+
+      this.laptop.x = this.player.x+32
+      this.laptop.y = this.player.y
+  }
 
     //go back to blockA counter
     if ( this.player.x > 1163

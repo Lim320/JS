@@ -130,15 +130,15 @@ class world extends Phaser.Scene {
           }
     
     // check for BlockB door
-    if ( this.player.x > 520 && this.player.x < 580
-      && this.player.y > 560 && this.player.y < 565 ) {
+    if ( this.player.x > 510 && this.player.x < 590
+      && this.player.y > 550 && this.player.y < 565 ) {
 
         this.blockB()
       }
     
     // check for BlockC door
-      if ( this.player.x > 1244 && this.player.x < 1274
-        && this.player.y > 592 && this.player.y < 600 ) {
+      if ( this.player.x > 1240 && this.player.x < 1280
+        && this.player.y > 588 && this.player.y < 600 ) {
   
           this.blockC()
         }
@@ -152,8 +152,8 @@ class world extends Phaser.Scene {
 
 
     //check for BlockD entrance
-      if ( this.player.x > 1576 && this.player.x < 1643
-        && this.player.y > 400 && this.player.y < 413 ) {
+      if ( this.player.x > 1570 && this.player.x < 1648
+        && this.player.y > 395 && this.player.y < 418 ) {
 
           this.blockD()
         }
