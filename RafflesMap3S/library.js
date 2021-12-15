@@ -29,6 +29,7 @@ class library extends Phaser.Scene {
 
     create() {
         console.log('*** library scene');
+        console.log("star:", window.stars);
 
         this.collectsound = this.sound.add("collect");
 
@@ -97,8 +98,46 @@ class library extends Phaser.Scene {
     this.physics.add.collider(this.player, this.furnitureLayer);
     this.physics.add.collider(this.player, this.frameLayer); 
     
-    //star
-    this.star2 = this.add.sprite(110,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+    this.star1 = this.add.sprite(40,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star2 = this.add.sprite(110,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star3 = this.add.sprite(180,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star4 = this.add.sprite(250,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star5 = this.add.sprite(320,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star6 = this.add.sprite(390,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+
+   if ( window.stars ===1) {
+    this.star1.setVisible(true);
+  }
+  else if ( window.stars === 2) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+
+} else if ( window.stars === 3) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+    this.star3.setVisible(true);
+} 
+else if ( window.stars === 4) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+}
+else if ( window.stars === 5) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+}
+else if ( window.stars === 6) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+  this.star6.setVisible(true);
+}
 
         
     }
@@ -121,9 +160,7 @@ class library extends Phaser.Scene {
 
         console.log("dropbook")
         window.holdbook = 0
-        this.star2.setVisible(true);
         this.collectsound.play();
-        window.stars++;
       }
 
       //hold laptop

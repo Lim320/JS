@@ -29,17 +29,21 @@ class intro10 extends Phaser.Scene {
     // Check for spacebar or any key here
     var spaceDown = this.input.keyboard.addKey("SPACE");
 
-    
-
-    // On spacebar event, call the world scene
-    spaceDown.on(
-      "down",
-      function () {
-        console.log("Jump to intro11 scene");
-        this.scene.start( "intro11");
-      },
-      this
-    );
+      // On spacebar event, call the world scene
+      spaceDown.on(
+        "down",
+        function () {
+          console.log("Jump to computerlab scene");
+          
+          let playerPos = {};
+          playerPos.x = 592;
+          playerPos.y = 1037;
+          playerPos.dir = "down";
+  
+          this.scene.start( "computerlab",{ playerPos : playerPos });
+        },
+        this
+      );
 
     // Add any text in the main page
     // this.add.text(90, 600, "Press spacebar to continue", {
@@ -49,4 +53,6 @@ class intro10 extends Phaser.Scene {
 
     // Create all the game animations here
   }
+
+   
 }

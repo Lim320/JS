@@ -35,8 +35,8 @@ class intro8 extends Phaser.Scene {
      spaceDown.on(
       "down",
       function () {
-        console.log("Jump to intro9 scene");
-        this.scene.start( "intro9");
+        console.log("Jump to intro10 scene");
+        this.scene.start( "intro10");
       },
       this
     );

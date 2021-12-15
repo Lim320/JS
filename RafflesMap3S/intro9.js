@@ -29,14 +29,16 @@ class intro9 extends Phaser.Scene {
     // Check for spacebar or any key here
     var spaceDown = this.input.keyboard.addKey("SPACE");
 
-    
-
-    // On spacebar event, call the world scene
-    spaceDown.on(
+     // On spacebar event, call the world scene
+     spaceDown.on(
       "down",
       function () {
-        console.log("Jump to intro10 scene");
-        this.scene.start( "intro10");
+        console.log("Jump to room1 scene");
+        let playerPos = {};
+        playerPos.x = 1130;
+        playerPos.y = 449;
+        playerPos.dir = "left";
+        this.scene.start( "room1",{ playerPos : playerPos });
       },
       this
     );
@@ -49,4 +51,14 @@ class intro9 extends Phaser.Scene {
 
     // Create all the game animations here
   }
+
+  // // Function to jump to room1
+  // room1(player, tile) {
+  //   console.log("room1 function");
+  //   let playerPos = {};
+  //   playerPos.x = 1150;
+  //   playerPos.y = 449;
+  //   playerPos.dir = "left";
+  //   this.scene.start("room1",{playerPos: playerPos});
+  // }
 }

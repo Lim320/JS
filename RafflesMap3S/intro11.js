@@ -29,17 +29,21 @@ class intro11 extends Phaser.Scene {
     // Check for spacebar or any key here
     var spaceDown = this.input.keyboard.addKey("SPACE");
 
-    
-
-    // On spacebar event, call the world scene
-    spaceDown.on(
+     //function to jump to blockC
+     spaceDown.on(
       "down",
       function () {
-        console.log("Jump to intro12 scene");
-        this.scene.start( "intro12");
-      },
-      this
+    console.log("Jump to blockC scene");
+    console.log("blockC function");
+    let playerPos = {};
+    playerPos.x = 639;
+    playerPos.y = 1122;
+    playerPos.dir = "up";
+    this.scene.start("blockC",{ playerPos : playerPos });
+  },
+  this
     );
+
 
     // Add any text in the main page
     // this.add.text(90, 600, "Press spacebar to continue", {

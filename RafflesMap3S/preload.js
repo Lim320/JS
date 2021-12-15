@@ -16,6 +16,9 @@ class preload extends Phaser.Scene {
     this.load.image("laptop","assets/laptop.png");
     this.load.image("book","assets/book.png");
     this.load.image("gift","assets/gift.png");
+     //star_collect
+     this.load.image("star","assets/star.png");
+
 
      //main character movement
      this.load.atlas( 'left', 'assets/left.png', 'assets/left.json'); 
@@ -119,7 +122,7 @@ class preload extends Phaser.Scene {
    spaceDown.on(
     "down",
     function () {
-      console.log("Jump to preload scene");
+      console.log("Jump to intro1 scene");
       this.scene.start( "intro1");
     },
     this

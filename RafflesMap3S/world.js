@@ -34,12 +34,7 @@ class world extends Phaser.Scene {
 
   create() {
     console.log("*** world scene");
-
-    //background_sound
-    this.music = this.sound.add("bgmusic", {
-      loop: true,
-    }).setVolume(0.2);this.music.play();
-    
+    console.log("star:", window.stars);
 
     //Step 3 - Create the map from main
     let map = this.make.tilemap({key:'worldmap'}); 
@@ -118,6 +113,48 @@ class world extends Phaser.Scene {
      //collect item
      this.gift = this.physics.add.sprite(-10, -10, 'gift');
      this.laptop = this.physics.add.sprite(-10, -10, 'laptop');
+
+      //star
+   this.star1 = this.add.sprite(40,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star2 = this.add.sprite(110,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star3 = this.add.sprite(180,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star4 = this.add.sprite(250,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star5 = this.add.sprite(320,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star6 = this.add.sprite(390,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+
+   if ( window.stars ===1) {
+    this.star1.setVisible(true);
+  }
+  else if ( window.stars === 2) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+
+} else if ( window.stars === 3) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+    this.star3.setVisible(true);
+} 
+else if ( window.stars === 4) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+}
+else if ( window.stars === 5) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+}
+else if ( window.stars === 6) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+  this.star6.setVisible(true);
+}
   } 
   /////////////////// end of create //////////////////////////////
 
@@ -127,7 +164,7 @@ class world extends Phaser.Scene {
      //hold gift
      if (window.holdgift == 2) {
 
-      this.gift.x = this.player.x+32
+      this.gift.x = this.player.x-32
       this.gift.y = this.player.y
     }
 
@@ -156,12 +193,12 @@ class world extends Phaser.Scene {
       if ( this.player.x > 1240 && this.player.x < 1280
         && this.player.y > 588 && this.player.y < 600 ) {
   
-          this.blockC()
+          this.intro11()
         }
 
      //this is exit for endScene!
      if ( this.player.x > 656 && this.player.x < 720
-        && this.player.y > 1238 && window.stars >= 6 ) {
+        && this.player.y > 1238 && window.stars >= 0 ) {
   
           this.endScene()
         }
@@ -236,15 +273,11 @@ class world extends Phaser.Scene {
     this.scene.start("blockB",{ playerPos : playerPos });
   }
 
-  //function to jump to blockC
-  blockC(player, tile) {
-    console.log("blockC function");
-    let playerPos = {};
-    playerPos.x = 639;
-    playerPos.y = 1122;
-    playerPos.dir = "up";
-    this.scene.start("blockC",{ playerPos : playerPos });
-  }
+    // Function to jump to blockC-intro
+    intro11(player, tile) {
+      console.log("intro11 function");
+      this.scene.start("intro11");
+      }
 
   //function to jump to blockD
   blockD(player, tile) {

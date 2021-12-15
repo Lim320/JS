@@ -1,7 +1,7 @@
-class intro12 extends Phaser.Scene {
+class intro12point1 extends Phaser.Scene {
   constructor() {
     super({
-      key: "intro12",
+      key: "intro12point1",
     });
 
     // Put global variable here
@@ -9,12 +9,12 @@ class intro12 extends Phaser.Scene {
 
   preload() {
 
-    this.load.image("introPage-12","assets/introPage-12.png");
+    this.load.image("introPage-12-1","assets/introPage-12-1.png");
 
   }
 
   create() {
-    console.log("*** intro12 scene");
+    console.log("*** intro12point1 scene");
 
     // Add any sound and music here
     // ( 0 = mute to 1 is loudest )
@@ -24,25 +24,20 @@ class intro12 extends Phaser.Scene {
     //window.music = this.music
 
     // Add image and detect spacebar keypress
-    this.add.image(0, 0, 'introPage-12').setOrigin(0, 0);
+    this.add.image(0, 0, 'introPage-12-1').setOrigin(0, 0);
 
     // Check for spacebar or any key here
     var spaceDown = this.input.keyboard.addKey("SPACE");
 
-   //function to jump to blockD
-   spaceDown.on(
-    "down",
-    function () {
-    console.log("cafeteria function");
-    let playerPos = {};
-    playerPos.x = 86;
-    playerPos.y = 540;
-    playerPos.dir = "right";
-    this.scene.start("cafeteria",{playerPos: playerPos});
-},
-this
-);
-
+     // On spacebar event, call the world scene
+     spaceDown.on(
+      "down",
+      function () {
+        console.log("Jump to intro12 scene");
+        this.scene.start( "intro12");
+      },
+      this
+    );
 
     // Add any text in the main page
     // this.add.text(90, 600, "Press spacebar to continue", {

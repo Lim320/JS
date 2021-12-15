@@ -10,6 +10,7 @@ class room1 extends Phaser.Scene {
 
     init(data) {
         this.playerPos = data.playerPos;
+        this.inventory = data.inventory
     }
 
     preload() {
@@ -31,8 +32,12 @@ class room1 extends Phaser.Scene {
 
     create() {
         console.log('*** room1 scene');
+        console.log("star:", window.stars);
 
         let map = this.make.tilemap({key: "BAr1"});
+
+         //collectsound
+         this.collectsound = this.sound.add("collect");
 
         let atlasTiles = map.addTilesetImage("atlas32x32","atlas");
         let mordernTiles = map.addTilesetImage("mordern32x32","modern");
@@ -103,6 +108,47 @@ class room1 extends Phaser.Scene {
 
       //collect action
       this.physics.add.overlap(this.player, this.book, this.holditem, null, this);
+
+      this.star1 = this.add.sprite(40,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star2 = this.add.sprite(110,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star3 = this.add.sprite(180,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star4 = this.add.sprite(250,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star5 = this.add.sprite(320,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   this.star6 = this.add.sprite(390,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+
+   if ( window.stars ===1) {
+    this.star1.setVisible(true);
+  }
+  else if ( window.stars === 2) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+
+} else if ( window.stars === 3) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+    this.star3.setVisible(true);
+} 
+else if ( window.stars === 4) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+}
+else if ( window.stars === 5) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+}
+else if ( window.stars === 6) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+  this.star6.setVisible(true);
+}
     }
 
     update() {
@@ -110,14 +156,14 @@ class room1 extends Phaser.Scene {
         //hold book
         if (window.holdbook == 1) {
 
-            this.book.x = this.player.x+32
+            this.book.x = this.player.x+50
             this.book.y = this.player.y
         }
 
          //hold laptop
      if (window.holdlaptop == 3) {
 
-        this.laptop.x = this.player.x+32
+        this.laptop.x = this.player.x+50
         this.laptop.y = this.player.y
     }
 
@@ -198,6 +244,44 @@ class room1 extends Phaser.Scene {
             console.log("hold item")
 
             window.holdbook = 1
+            this.star3.setVisible(true);
+            window.stars = window.stars + 1
+            this.collectsound.play();
+
+            if ( window.stars ===1) {
+                this.star1.setVisible(true);
+              }
+              else if ( window.stars === 2) {
+                this.star1.setVisible(true);
+                this.star2.setVisible(true);
+            
+            } else if ( window.stars === 3) {
+                this.star1.setVisible(true);
+                this.star2.setVisible(true);
+                this.star3.setVisible(true);
+            } 
+            else if ( window.stars === 4) {
+              this.star1.setVisible(true);
+              this.star2.setVisible(true);
+              this.star3.setVisible(true);
+              this.star4.setVisible(true);
+            }
+            else if ( window.stars === 5) {
+              this.star1.setVisible(true);
+              this.star2.setVisible(true);
+              this.star3.setVisible(true);
+              this.star4.setVisible(true);
+              this.star5.setVisible(true);
+            }
+            else if ( window.stars === 6) {
+              this.star1.setVisible(true);
+              this.star2.setVisible(true);
+              this.star3.setVisible(true);
+              this.star4.setVisible(true);
+              this.star5.setVisible(true);
+              this.star6.setVisible(true);
+            }
+              return false;
         }
 
     

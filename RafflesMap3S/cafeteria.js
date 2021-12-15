@@ -43,6 +43,7 @@ class cafeteria extends Phaser.Scene {
 
     create() {
         console.log('*** cafeteria scene');
+        console.log("star:", window.stars);
 
         let map = this.make.tilemap({key: "cafeteriatile"});
 
@@ -175,9 +176,46 @@ class cafeteria extends Phaser.Scene {
      this.physics.add.overlap(this.player, this.lemonJuice, this.collectItem3, null, this );
 
       //star
-     this.star4 = this.add.sprite(250,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
-     this.star5 = this.add.sprite(320,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
-     this.star6 = this.add.sprite(390,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+      this.star1 = this.add.sprite(40,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+      this.star2 = this.add.sprite(110,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+      this.star3 = this.add.sprite(180,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+      this.star4 = this.add.sprite(250,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+      this.star5 = this.add.sprite(320,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+      this.star6 = this.add.sprite(390,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+   
+      if ( window.stars ===1) {
+       this.star1.setVisible(true);
+     }
+     else if ( window.stars === 2) {
+       this.star1.setVisible(true);
+       this.star2.setVisible(true);
+   
+   } else if ( window.stars === 3) {
+       this.star1.setVisible(true);
+       this.star2.setVisible(true);
+       this.star3.setVisible(true);
+   } 
+   else if ( window.stars === 4) {
+     this.star1.setVisible(true);
+     this.star2.setVisible(true);
+     this.star3.setVisible(true);
+     this.star4.setVisible(true);
+   }
+   else if ( window.stars === 5) {
+     this.star1.setVisible(true);
+     this.star2.setVisible(true);
+     this.star3.setVisible(true);
+     this.star4.setVisible(true);
+     this.star5.setVisible(true);
+   }
+   else if ( window.stars === 6) {
+     this.star1.setVisible(true);
+     this.star2.setVisible(true);
+     this.star3.setVisible(true);
+     this.star4.setVisible(true);
+     this.star5.setVisible(true);
+     this.star6.setVisible(true);
+   }
 
 
     }
@@ -187,22 +225,20 @@ class cafeteria extends Phaser.Scene {
        //hold and drop gift
      if (window.holdgift == 2) {
 
-      this.gift.x = this.player.x+32
+      this.gift.x = this.player.x-32
       this.gift.y = this.player.y
     }
 
       if (
-        this.player.x > 630&&
-        this.player.x < 650&&
+        this.player.x > 680&&
+        this.player.x < 700&&
         this.player.y > 580&&
         this.player.y < 600
       ) {
 
         console.log("dropgift")
         window.holdgift = 0
-        this.star4.setVisible(true);
         this.collectsound.play();
-        window.stars++;
       }
 
     //go back to blockD classroom
@@ -305,17 +341,86 @@ class cafeteria extends Phaser.Scene {
   collectItem2 (player,food)
   {
   food.disableBody(true,true);
-  this.star5.setVisible(true);
+  window.stars = window.stars + 1
   this.collectsound.play();
-        window.stars++;
+  
+  if ( window.stars ===1) {
+    this.star1.setVisible(true);
+  }
+  else if ( window.stars === 2) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+
+} else if ( window.stars === 3) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+    this.star3.setVisible(true);
+} 
+else if ( window.stars === 4) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+}
+else if ( window.stars === 5) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+}
+else if ( window.stars === 6) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+  this.star6.setVisible(true);
+}
+  return false;
    }
 
    collectItem3 (player,lemonJuice)
   {
   lemonJuice.disableBody(true,true);
-  this.star6.setVisible(true);
+  // this.star6.setVisible(true);
+  window.stars = window.stars + 1
   this.collectsound.play();
-        window.stars++;
+  
+  if ( window.stars ===1) {
+    this.star1.setVisible(true);
+  }
+  else if ( window.stars === 2) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+
+} else if ( window.stars === 3) {
+    this.star1.setVisible(true);
+    this.star2.setVisible(true);
+    this.star3.setVisible(true);
+} 
+else if ( window.stars === 4) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+}
+else if ( window.stars === 5) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+}
+else if ( window.stars === 6) {
+  this.star1.setVisible(true);
+  this.star2.setVisible(true);
+  this.star3.setVisible(true);
+  this.star4.setVisible(true);
+  this.star5.setVisible(true);
+  this.star6.setVisible(true);
+}
+  return false;
    }
 
     

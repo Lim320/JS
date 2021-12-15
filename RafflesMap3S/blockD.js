@@ -72,6 +72,48 @@ class blockD extends Phaser.Scene {
     
    //collect item
    this.gift = this.physics.add.sprite(-10, -10, 'gift');
+
+    //star
+    this.star1 = this.add.sprite(40,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+    this.star2 = this.add.sprite(110,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+    this.star3 = this.add.sprite(180,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+    this.star4 = this.add.sprite(250,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+    this.star5 = this.add.sprite(320,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+    this.star6 = this.add.sprite(390,40,"star").setScale(2).setScrollFactor(0).setVisible(false);
+ 
+    if ( window.stars ===1) {
+     this.star1.setVisible(true);
+   }
+   else if ( window.stars === 2) {
+     this.star1.setVisible(true);
+     this.star2.setVisible(true);
+ 
+ } else if ( window.stars === 3) {
+     this.star1.setVisible(true);
+     this.star2.setVisible(true);
+     this.star3.setVisible(true);
+ } 
+ else if ( window.stars === 4) {
+   this.star1.setVisible(true);
+   this.star2.setVisible(true);
+   this.star3.setVisible(true);
+   this.star4.setVisible(true);
+ }
+ else if ( window.stars === 5) {
+   this.star1.setVisible(true);
+   this.star2.setVisible(true);
+   this.star3.setVisible(true);
+   this.star4.setVisible(true);
+   this.star5.setVisible(true);
+ }
+ else if ( window.stars === 6) {
+   this.star1.setVisible(true);
+   this.star2.setVisible(true);
+   this.star3.setVisible(true);
+   this.star4.setVisible(true);
+   this.star5.setVisible(true);
+   this.star6.setVisible(true);
+ }
   
     }
 
@@ -80,7 +122,7 @@ class blockD extends Phaser.Scene {
        //hold gift
      if (window.holdgift == 2) {
 
-      this.gift.x = this.player.x+32
+      this.gift.x = this.player.x-32
       this.gift.y = this.player.y
   }
 
@@ -94,7 +136,7 @@ class blockD extends Phaser.Scene {
     if ( this.player.x > 1220
         && this.player.y > 496 && this.player.y < 591 ) {
   
-          this.cafeteria();
+          this.intro12point1();
         }
 
     if (this.cursors.left.isDown) {
@@ -131,15 +173,13 @@ class blockD extends Phaser.Scene {
     this.scene.start("world",{playerPos: playerPos});
   }
 
-    //function to jump to blockD
-    cafeteria(player, tile) {
-        console.log("cafeteria function");
-        let playerPos = {};
-        playerPos.x = 86;
-        playerPos.y = 540;
-        playerPos.dir = "right";
-        this.scene.start("cafeteria",{playerPos: playerPos});
-    }
+    // Function to jump to computerlab
+    intro12point1(player, tile) {
+      console.log("intro12point1 function");
+      this.scene.start("intro12point1");
+      }
+
+    
 
     
 

@@ -11,17 +11,20 @@ class endScene extends Phaser.Scene {
 
     this.load.image("end","assets/endSceneyay.png");
 
+    //endscene music
+    this.load.audio("endMusic","assets/endMusic.mp3");
+
   }
 
   create() {
     console.log("*** endScene scene");
 
-    // Add any sound and music here
-    // ( 0 = mute to 1 is loudest )
-    //this.music = this.sound.add('bgMusic').setVolume(0.3) // 10% volume
+    window.music.stop();
 
-    //this.music.play()
-    //window.music = this.music
+         this.music = this.sound
+          .add("endMusic", {
+         loop: true,
+         }).setVolume(0.3);this.music.play();
 
     // Add image and detect spacebar keypress
     this.add.image(0, 0, 'end').setOrigin(0, 0);
@@ -37,6 +40,7 @@ class endScene extends Phaser.Scene {
       function () {
         console.log("Jump to preload scene");
         this.scene.start( "preload");
+        this.music.stop();
       },
       this
     );
