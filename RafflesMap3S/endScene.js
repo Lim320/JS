@@ -20,6 +20,9 @@ class endScene extends Phaser.Scene {
     console.log("*** endScene scene");
 
     window.stars = 0;
+    window.holdlaptop = 0
+    window.holdgift = 0
+    window.holdbook = 0
 
     window.music.stop();
 
