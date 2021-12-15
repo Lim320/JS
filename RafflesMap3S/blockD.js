@@ -24,6 +24,7 @@ class blockD extends Phaser.Scene {
 
     create() {
         console.log('*** blockD scene');
+        console.log("star:", window.stars);
 
         let map = this.make.tilemap({key: "bDclassroom"});
 

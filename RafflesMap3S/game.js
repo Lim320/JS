@@ -17,7 +17,8 @@
     backgroundColor: '#000000',
     pixelArt: true,
     scene: [preload, intro1, intro2, intro3, intro4, intro5, intro6, intro7, intro8, intro9, intro10, 
-        intro11, intro12, intro12point1, world, room1, blockB, blockC, blockD, cafeteria, computerlab, library, 
+        intro11, intro12, intro12point1, intoBlockB1, intoLibrary1, world, guardConv1, guardConv2, 
+        room1, blockB, blockC, blockD, cafeteria, giftConv1, giftConv2, computerlab, library, 
         endScene]
 };
 

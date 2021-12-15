@@ -31,6 +31,7 @@ class blockC extends Phaser.Scene {
 
     create() {
         console.log('*** blockC scene');
+        console.log("star:", window.stars);
 
         let map = this.make.tilemap({key: "jewelry"});
 

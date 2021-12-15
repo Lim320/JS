@@ -182,7 +182,7 @@ else if ( window.stars === 6) {
     //go to library
     if ( this.player.x < 114
         && this.player.y > 784 && this.player.y < 879 ) {
-            this.library();
+            this.intoLibrary1();
         }
 
     if (this.cursors.left.isDown) {
@@ -229,15 +229,11 @@ else if ( window.stars === 6) {
             this.scene.start("computerlab",{playerPos: playerPos});
         }
 
-        // Function to jump to library
-        library(player, tile) {
-            console.log("library function");
-            let playerPos = {};
-            playerPos.x = 1120;
-            playerPos.y = 460;
-            playerPos.dir = "left";
-            this.scene.start("library",{playerPos: playerPos});
-        }
+          // Function to jump to computerlab
+          intoLibrary1(player, tile) {
+            console.log("intoLibrary1 function");
+            this.scene.start("intoLibrary1");
+            }
 
         //function to hold book
         holditem(player) {

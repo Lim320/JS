@@ -254,6 +254,12 @@ class cafeteria extends Phaser.Scene {
             this.world();
         }
 
+        //trigger giftConv1
+    if ( this.player.x > 719 && this.player.x < 721
+      && this.player.y > 590 && this.player.y < 593 ){
+          this.giftConv1();
+      }
+
     
 
     if (this.cursors.left.isDown) {
@@ -337,6 +343,12 @@ class cafeteria extends Phaser.Scene {
     playerPos.dir = "left";
     this.scene.start("blockD",{playerPos: playerPos});
   }
+
+  // Function to jump to giftConv1
+  giftConv1(player, tile) {
+    console.log("giftConv1 function");
+    this.scene.start("giftConv1");
+    }
 
   collectItem2 (player,food)
   {

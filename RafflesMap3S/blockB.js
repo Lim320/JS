@@ -29,6 +29,7 @@ class blockB extends Phaser.Scene {
 
     create() {
         console.log('*** blockB scene');
+        console.log("star:", window.stars);
 
         let map = this.make.tilemap({key: "office"});
          //collectsound

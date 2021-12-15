@@ -22,7 +22,7 @@ class intro1 extends Phaser.Scene {
     // Check for spacebar or any key here
     var spaceDown = this.input.keyboard.addKey("SPACE");
 
-    // On spacebar event, call the world scene
+    // On spacebar event, jump to intro2
     spaceDown.on(
       "down",
       function () {
@@ -32,12 +32,5 @@ class intro1 extends Phaser.Scene {
       this
     );
 
-    // Add any text in the main page
-    // this.add.text(90, 600, "Press spacebar to continue", {
-    //   font: "30px ARCHADECLASSIC ",
-    //   fill: "#000000",
-    // });
-
-    // Create all the game animations here
   }
 }

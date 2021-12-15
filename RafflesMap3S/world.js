@@ -186,7 +186,7 @@ else if ( window.stars === 6) {
     if ( this.player.x > 510 && this.player.x < 590
       && this.player.y > 550 && this.player.y < 565 ) {
 
-        this.blockB()
+        this.intoBlockB1()
       }
     
     // check for BlockC door
@@ -196,9 +196,15 @@ else if ( window.stars === 6) {
           this.intro11()
         }
 
+         //trigger guardConv1
+         if ( this.player.x > 760 && this.player.x < 775
+          && this.player.y >455&& this.player.y < 478 ){
+          this.guardConv1();
+         }
+
      //this is exit for endScene!
      if ( this.player.x > 656 && this.player.x < 720
-        && this.player.y > 1238 && window.stars >= 0 ) {
+        && this.player.y > 1238 && window.stars >= 6 ) {
   
           this.endScene()
         }
@@ -263,15 +269,11 @@ else if ( window.stars === 6) {
     this.scene.start("room1",{ playerPos : playerPos });
   }
 
-  //function to jump to blockB
-  blockB(player, tile) {
-    console.log("blockB function");
-    let playerPos = {};
-    playerPos.x = 639;
-    playerPos.y = 1105;
-    playerPos.dir = "up";
-    this.scene.start("blockB",{ playerPos : playerPos });
-  }
+  // Function to jump to blockC-intro
+  intoBlockB1(player, tile) {
+    console.log("intoBlockB1 function");
+    this.scene.start("intoBlockB1");
+    }
 
     // Function to jump to blockC-intro
     intro11(player, tile) {
@@ -288,6 +290,12 @@ else if ( window.stars === 6) {
     playerPos.dir = "right";
     this.scene.start("blockD",{ playerPos : playerPos });
   }
+
+  // Function to jump to computerlab
+  guardConv1(player, tile) {
+    console.log("guardConv1 function");
+    this.scene.start("guardConv1");
+    }
 
   //function to jump to endScene
   endScene(player,tile) {

@@ -19,6 +19,8 @@ class endScene extends Phaser.Scene {
   create() {
     console.log("*** endScene scene");
 
+    window.stars = 0;
+
     window.music.stop();
 
          this.music = this.sound
@@ -45,12 +47,5 @@ class endScene extends Phaser.Scene {
       this
     );
 
-    // Add any text in the main page
-    // this.add.text(90, 600, "Press spacebar to continue", {
-    //   font: "30px ARCHADECLASSIC ",
-    //   fill: "#000000",
-    // });
-
-    // Create all the game animations here
   }
 }
